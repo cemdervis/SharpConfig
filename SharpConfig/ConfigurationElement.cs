@@ -1,59 +1,62 @@
-﻿// Copyright (c) 2013-2016 Cemalettin Dervis, MIT License.
-// https://github.com/cemdervis/SharpConfig
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace SharpConfig
 {
-    /// <summary>
-    /// Represents the base class of all elements
-    /// that exist in a <see cref="Configuration"/>,
-    /// for example sections and settings.
-    /// </summary>
-    public abstract class ConfigurationElement
-    {
-        private string mName;
-        private Comment? mComment;
-        internal List<Comment> mPreComments;
+	/// <summary>
+	///		Represents the base class of all elements that exist in a <see cref="Configuration"/>.
+	///		For example sections and settings.
+	/// </summary>
+	public abstract class ConfigurationElement
+	{
+		private		string			mName;
+		private		Comment?		mComment;
+		internal	List<Comment>	mPreComments;
 
-        internal ConfigurationElement(string name)
-        {
-            if (string.IsNullOrEmpty(name))
-                throw new ArgumentNullException("name");
+		internal ConfigurationElement(string name)
+		{
+			if (string.IsNullOrEmpty(name))
+				throw new ArgumentNullException(nameof(name));
 
-            mName = name;
-        }
+			mName = name;
+		}
 
-        /// <summary>
-        /// Gets the name of this element.
-        /// </summary>
-        public string Name
-        {
-            get { return mName; }
-        }
+		/// <summary>
+		///		Gets or sets the name of this element.
+		/// </summary>
+		public string Name
+		{
+			get { return mName; }
+			set
+			{
+				if (string.IsNullOrEmpty(value))
+					throw new ArgumentNullException(nameof(value));
 
-        /// <summary>
-        /// Gets or sets the comment of this element.
-        /// </summary>
-        public Comment? Comment
-        {
-            get { return mComment; }
-            set { mComment = value; }
-        }
+				mName = value;
+			}
+		}
 
-        /// <summary>
-        /// Gets the list of comments above this element.
-        /// </summary>
-        public List<Comment> PreComments
-        {
-            get
-            {
-                if (mPreComments == null)
-                    mPreComments = new List<Comment>();
+		/// <summary>
+		///		Gets or sets the comment of this element.
+		/// </summary>
+		public Comment? Comment
+		{
+			get { return mComment; }
+			set { mComment = value; }
+		}
 
-                return mPreComments;
-            }
-        }
-    }
+		/// <summary>
+		///		Gets the list of comments above this element.
+		/// </summary>
+		public List<Comment> PreComments
+		{
+			get
+			{
+				if (mPreComments == null)
+					mPreComments = new List<Comment>();
+
+				return mPreComments;
+			}
+		}
+	}
 }

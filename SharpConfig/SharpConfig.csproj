@@ -40,30 +40,32 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>SharpConfig.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\IgnoreAttribute.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Configuration.Deserialization.cs" />
+    <Compile Include="Configuration.Load.cs" />
     <Compile Include="Configuration.Parsing.cs" />
+    <Compile Include="Configuration.Save.cs" />
     <Compile Include="Configuration.Serialization.cs" />
+    <Compile Include="Configuration.Singleton.cs" />
+    <Compile Include="Configuration.TypeConverter.cs" />
     <Compile Include="ConfigurationElement.cs" />
-    <Compile Include="StockStringConverters.cs" />
-    <Compile Include="IgnoreAttribute.cs" />
+    <Compile Include="Exceptions\ParserException.cs" />
+    <Compile Include="Exceptions\SettingValueCastException.cs" />
     <Compile Include="ITypeStringConverter.cs" />
-    <Compile Include="ParserException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Setting.cs" />
     <Compile Include="Section.cs" />
+    <Compile Include="Setting.cs" />
     <Compile Include="SettingArrayEnumerator.cs" />
-    <Compile Include="SettingValueCastException.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="SharpConfig.snk" />
+    <Compile Include="TypeStringConverters.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
