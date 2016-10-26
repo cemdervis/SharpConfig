@@ -1,4 +1,4 @@
-﻿namespace Utilities.Configuration
+﻿namespace SharpConfig
 {
 	/// <summary>
 	///		Represents a comment in a configuration.

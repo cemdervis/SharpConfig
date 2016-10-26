@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Utilities.Configuration
+namespace SharpConfig
 {
 	/// <summary>
 	///		Defines a type-to-string and string-to-type converter that is used for the conversion of setting values.

@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using Utilities.Configuration.Attributes;
+using SharpConfig.Attributes;
 
-namespace Utilities.Configuration
+namespace SharpConfig
 {
 	/// <summary>
 	/// Represents a group of <see cref="Setting"/> objects.

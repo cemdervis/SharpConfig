@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Utilities.Configuration.Exceptions;
+using SharpConfig.Exceptions;
 
-namespace Utilities.Configuration
+namespace SharpConfig
 {
 	public partial class Configuration
 	{

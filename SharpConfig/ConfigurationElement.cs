@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Utilities.Configuration
+namespace SharpConfig
 {
 	/// <summary>
 	///		Represents the base class of all elements that exist in a <see cref="Configuration"/>.

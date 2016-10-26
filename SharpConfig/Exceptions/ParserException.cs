@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Utilities.Configuration.Exceptions
+namespace SharpConfig.Exceptions
 {
 	/// <summary>
 	/// Represents an error that occurred during

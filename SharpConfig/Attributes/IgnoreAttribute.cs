@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Utilities.Configuration.Attributes
+namespace SharpConfig.Attributes
 {
 	/// <summary>
 	///		Represents an attribute that tells configuration to ignore the subject this attribute is applied to.

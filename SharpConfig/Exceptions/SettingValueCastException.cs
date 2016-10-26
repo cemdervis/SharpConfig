@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Utilities.Configuration.Exceptions
+namespace SharpConfig.Exceptions
 {
 	/// <summary>
 	///		Represents an error that occurs when a string value could not be converted to a specific instance.

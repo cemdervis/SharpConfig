@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace Utilities.Configuration
+namespace SharpConfig
 {
 	public partial class Configuration
 	{

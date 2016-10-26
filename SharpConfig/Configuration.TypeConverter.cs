@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Utilities.Configuration
+namespace SharpConfig
 {
 	public partial class Configuration
 	{

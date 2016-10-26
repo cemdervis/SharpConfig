@@ -1,7 +1,7 @@
 ﻿using System;
-using Utilities.Configuration.Exceptions;
+using SharpConfig.Exceptions;
 
-namespace Utilities.Configuration
+namespace SharpConfig
 {
 	/// <summary>
 	/// Represents a setting in a <see cref="Configuration"/>.

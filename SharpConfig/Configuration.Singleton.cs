@@ -2,11 +2,11 @@
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace Utilities.Configuration
+namespace SharpConfig
 {
 	public partial class Configuration
 	{
-		internal sealed class Singleton
+		public sealed class Singleton
 		{
 			/// <summary> 
 			///		The one and only Configuration instance.
@@ -91,7 +91,7 @@ namespace Utilities.Configuration
 		/// <summary> 
 		///		Gets the instance of the singleton configuration object.
 		///	</summary>
-		public static Configuration Instance
+		public static Configuration SingletonInstance
 		{
 			get { return Singleton.Instance; }
 		}
@@ -101,9 +101,9 @@ namespace Utilities.Configuration
 		///	</summary>
 		///	
 		/// <returns> The instance of the configuration object. </returns>
-		public static Configuration GetInstance()
+		public static Configuration GetSingletonInstance()
 		{
-			return Instance;
+			return SingletonInstance;
 		}
 	}
 }

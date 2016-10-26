@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Utilities.Configuration
+namespace SharpConfig
 {
 	internal sealed class FallbackStringConverter : ITypeStringConverter
 	{

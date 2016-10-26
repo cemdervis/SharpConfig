@@ -1,4 +1,4 @@
-﻿namespace Utilities.Configuration
+﻿namespace SharpConfig
 {
 	/// <summary>
 	///		Enumerates the elements of a Setting that represents an array.
