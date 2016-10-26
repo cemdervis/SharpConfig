@@ -1,0 +1,27 @@
+# Declare a section called "General".
+# All settings that are below the section belong to it,
+# until another section is declared.
+[General]
+SomeInteger = 10
+SomeFloat = 20.05
+
+# An array is identified by the brackets surrounding the value.
+AnArray = {0,2,5,7}
+
+# Another section called "Video".
+[Video]
+Width = 1920 # this is an inline comment.
+Height = 1200 # inline comments are parsed by SharpConfig.
+Format = RGB24
+
+# Another section.
+[OtherProperties]
+
+# A boolean can be represented by one of the following values:
+# true:   yes, 1, true, on
+# false:  no, 0, false, off
+ABoolean = yes
+ABooleanArray = {on,off,yes,no,true,false}
+
+AnEmptyArray = {}
+AnotherEmptyArray = {      }
