@@ -1,102 +1,114 @@
-﻿// Copyright (c) 2013-2016 Cemalettin Dervis, MIT License.
-// https://github.com/cemdervis/SharpConfig
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace SharpConfig
+namespace Utilities.Configuration
 {
-    public partial class Configuration
-    {
-        private static Configuration DeserializeBinary(BinaryReader reader, string filename)
-        {
-            if (string.IsNullOrEmpty(filename))
-                throw new ArgumentNullException("filename");
+	public partial class Configuration
+	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="reader"></param>
+		/// <param name="filename"></param>
+		/// <returns></returns>
+		private static Configuration DeserializeBinary(BinaryReader reader, string filename)
+		{
+			if (string.IsNullOrEmpty(filename))
+				throw new ArgumentNullException(nameof(filename));
 
-            Configuration config = null;
+			Configuration config = null;
 
-            using (var stream = File.OpenRead(filename))
-                config = DeserializeBinary(reader, stream);
+			using (var stream = File.OpenRead(filename))
+			{
+				config = DeserializeBinary(reader, stream);
+			}
 
-            return config;
-        }
+			return config;
+		}
 
-        private static Configuration DeserializeBinary(BinaryReader reader, Stream stream)
-        {
-            if (stream == null)
-                throw new ArgumentNullException("stream");
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="reader"></param>
+		/// <param name="stream"></param>
+		/// <returns></returns>
+		private static Configuration DeserializeBinary(BinaryReader reader, Stream stream)
+		{
+			if (stream == null)
+				throw new ArgumentNullException(nameof(stream));
 
-            bool ownReader = false;
+			bool ownReader = false;
 
-            if (reader == null)
-            {
-                reader = new BinaryReader(stream);
-                ownReader = true;
-            }
+			if (reader == null)
+			{
+				reader		= new BinaryReader(stream);
+				ownReader	= true;
+			}
 
-            try
-            {
-                var config = new Configuration();
+			try
+			{
+				var config = new Configuration();
 
-                int sectionCount = reader.ReadInt32();
+				int sectionCount = reader.ReadInt32();
 
-                for (int i = 0; i < sectionCount; ++i)
-                {
-                    string sectionName = reader.ReadString();
-                    int settingCount = reader.ReadInt32();
+				for (int i = 0; i < sectionCount; ++i)
+				{
+					string	sectionName		= reader.ReadString();
+					int		settingCount	= reader.ReadInt32();
 
-                    var section = new Section(sectionName);
+					var section = new Section(sectionName);
 
-                    DeserializeComments(reader, section);
+					DeserializeComments(reader, section);
 
-                    for (int j = 0; j < settingCount; j++)
-                    {
-                        var setting = new Setting(
-                            reader.ReadString(),
-                            reader.ReadString());
+					for (int j = 0; j < settingCount; j++)
+					{
+						var setting = new Setting(reader.ReadString(), reader.ReadString());
+						DeserializeComments(reader, setting);
+						section.Add(setting);
+					}
 
-                        DeserializeComments(reader, setting);
+					config.Add(section);
+				}
 
-                        section.Add(setting);
-                    }
+				return config;
+			}
+			finally
+			{
+				if (ownReader)
+					reader.Close();
+			}
+		}
 
-                    config.Add(section);
-                }
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="reader"></param>
+		/// <param name="element"></param>
+		private static void DeserializeComments(BinaryReader reader, ConfigurationElement element)
+		{
+			bool hasComment = reader.ReadBoolean();
+			if (hasComment)
+			{
+				char symbol = reader.ReadChar();
+				string commentValue = reader.ReadString();
+				element.Comment = new Comment(commentValue, symbol);
+			}
 
-                return config;
-            }
-            finally
-            {
-                if (ownReader)
-                    reader.Close();
-            }
-        }
+			int preCommentCount = reader.ReadInt32();
 
-        private static void DeserializeComments(BinaryReader reader, ConfigurationElement element)
-        {
-            bool hasComment = reader.ReadBoolean();
-            if (hasComment)
-            {
-                char symbol = reader.ReadChar();
-                string commentValue = reader.ReadString();
-                element.Comment = new Comment(commentValue, symbol);
-            }
+			if (preCommentCount > 0)
+			{
+				element.mPreComments = new List<Comment>(preCommentCount);
 
-            int preCommentCount = reader.ReadInt32();
+				for (int i = 0; i < preCommentCount; ++i)
+				{
+					char symbol = reader.ReadChar();
+					string commentValue = reader.ReadString();
+					element.mPreComments.Add(new Comment(commentValue, symbol));
+				}
+			}
+		}
 
-            if (preCommentCount > 0)
-            {
-                element.mPreComments = new List<Comment>(preCommentCount);
-
-                for (int i = 0; i < preCommentCount; ++i)
-                {
-                    char symbol = reader.ReadChar();
-                    string commentValue = reader.ReadString();
-                    element.mPreComments.Add(new Comment(commentValue, symbol));
-                }
-            }
-        }
-
-    }
+	}
 }
