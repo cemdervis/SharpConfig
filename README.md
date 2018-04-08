@@ -130,6 +130,9 @@ The following properties are the current ones:
 * bool **Configuration.SpaceBetweenEquals** { get; set; }
   * Gets or sets a value indicating whether space between equals should be added when creating a configuration.
 
+* bool **Configuration.OutputRawStringValues** { get; set; }
+  * Gets or sets a value indicating whether string values are written without quotes, but including everything in between.
+
 Ignoring properties, fields and types
 ---
 
