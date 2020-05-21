@@ -65,7 +65,7 @@ namespace SharpConfig
 
         if (lineWithoutComment.StartsWith("[")) // Section
         {
-          if (currentSection != null && currentSection.Name == Section.DefaultSectionName)
+          if (currentSection != null && currentSection.Name == Section.DefaultSectionName && currentSection.SettingCount > 0)
             config.mSections.Add(currentSection);
 
           currentSection = ParseSection(lineWithoutComment, lineNumber);
